@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_11_150233) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_11_191047) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -86,6 +86,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_11_150233) do
     t.index ["family"], name: "index_models_on_family"
     t.index ["provider", "model_id"], name: "index_models_on_provider_and_model_id", unique: true
     t.index ["provider"], name: "index_models_on_provider"
+  end
+
+  create_table "todos", force: :cascade do |t|
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.date "due_date"
+    t.string "priority"
+    t.string "status"
+    t.string "title"
+    t.datetime "updated_at", null: false
   end
 
   create_table "tool_calls", force: :cascade do |t|

@@ -12,6 +12,8 @@ class ChatResponseJob < ApplicationJob
       Always respond in a helpful, encouraging tone.
     PROMPT
 
+    chat.with_tools WeatherTool, ListTodosTool, CreateTodoTool, CompleteTodoTool
+
     chat.ask(content) do |chunk|
       if chunk.content && !chunk.content.empty?
         message = chat.messages.last
