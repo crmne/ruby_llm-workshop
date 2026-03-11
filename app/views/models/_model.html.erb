@@ -1,0 +1,17 @@
+<% model_id = model.respond_to?(:model_id) ? model.model_id : model.id %>
+<% row_id = [model.provider, model_id].join("_").parameterize(separator: "_") %>
+<tr id="model_<%= row_id %>">
+  <td class="px-3 py-2 text-sm text-gray-700"><%= model.provider_class&.name || model.provider %></td>
+  <td class="px-3 py-2 text-sm text-gray-900"><%= model.respond_to?(:display_name) ? model.display_name : model.name %></td>
+  <td class="px-3 py-2 text-sm text-gray-700"><%= number_with_delimiter(model.context_window) if model.context_window %></td>
+  <td class="px-3 py-2 text-sm text-gray-700">
+    <% input = model.input_price_per_million %>
+    <% output = model.output_price_per_million %>
+    <% if input && output %>
+      $<%= "%.2f" % input %> / $<%= "%.2f" % output %>
+    <% end %>
+  </td>
+  <td class="px-3 py-2 text-sm">
+    <%= link_to "Start chat", new_chat_path(model: model_id), class: "text-blue-600 hover:text-blue-500" %>
+  </td>
+</tr>
