@@ -43,11 +43,14 @@ result = Async do |task|
     result
   end
 
+  security = security.wait
+  performance = performance.wait
+  style = style.wait
   puts "📝 Synthesizing..."
   ReviewSynthesizerAgent.new.ask(
-    "security: #{security.wait}\n\n" \
-    "performance: #{performance.wait}\n\n" \
-    "style: #{style.wait}"
+    "security: #{security}\n\n" \
+    "performance: #{performance}\n\n" \
+    "style: #{style}"
   ).content
 end.wait
 
