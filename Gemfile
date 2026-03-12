@@ -71,3 +71,5 @@ group :test do
 end
 
 gem "ruby_llm", git: "https://github.com/crmne/ruby_llm.git"
+
+gem "async", "~> 2.38"
